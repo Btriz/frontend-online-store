@@ -1,24 +1,32 @@
 import React from 'react';
 import './App.css';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import ProductList from './pages/ProductList';
+import HomePage from './pages/HomePage';
 import ShoppingCart from './pages/ShoppingCart';
 import ProductDetails from './pages/ProductDetails';
+import Checkout from './pages/Checkout';
+import Header from './components/Header';
 
 function App() {
   return (
     <div className="app">
+      <Header />
       <BrowserRouter>
         <Switch>
           <Route
             exact
             path="/"
-            component={ ProductList }
+            component={ HomePage }
           />
           <Route
             exact
             path="/shopping-cart"
             component={ ShoppingCart }
+          />
+          <Route
+            exact
+            path="/shopping-cart/checkout"
+            component={ Checkout }
           />
           <Route
             path="/product-details/:name"

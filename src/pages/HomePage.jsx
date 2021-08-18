@@ -1,12 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import * as api from '../services/api';
 import CategoryList from '../components/CategoryList';
 import Products from '../components/Products';
 import Search from '../components/Search';
 import ShoppingCartButton from '../components/ShoppingCartButton';
 
-class ProductList extends React.Component {
+class HomePage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -14,28 +13,37 @@ class ProductList extends React.Component {
       categoryId: '',
       query: '',
       productResults: [],
+      productQuantity: 0,
     };
-
-    this.handleSearch = this.handleSearch.bind(this);
-    this.handleChange = this.handleChange.bind(this);
   }
 
   // FAZ A REQUISIÇÃO PRA LISTAR AS CATEGORIAS DISPONÍVEIS AO RENDERIZAR
   componentDidMount() {
     this.getCategoriesApi();
+    this.handleClick();
+  }
+
+  // MUDA A QUANTIDADE TOTAL DE PRODUTOS
+  handleClick = () => {
+    const product = JSON.parse(localStorage.getItem('product'));
+    if (product !== null) {
+      this.setState({
+        productQuantity: product.reduce((acc, curr) => acc + curr.qts, 0),
+      });
+    }
   }
 
   // CAPTURA O VALOR DO INPUT - CATEGORIA OU TERMO - NO ESTADO
-  handleChange(event) {
+  handleChange = (event) => {
     this.setState({ [event.target.name]: event.target.value });
 
     if (event.target.name === 'categoryId') {
-      this.handleSearch();
+      this.getSearchApi(event.target.value, '');
     }
   }
 
   // ATIVADA NO ONCLICK DO BOTÃO DE BUSCA. ENVIA A CATEGORIA E TERMO DO ESTADO PARA API
-  handleSearch() {
+  handleSearch = () => {
     const { categoryId, query } = this.state;
 
     this.getSearchApi(categoryId, query);
@@ -50,6 +58,11 @@ class ProductList extends React.Component {
     });
   }
 
+  // ATIVADA NO ENTER DO BOTÃO DE BUSCA.
+  handleKeyPress = (event) => {
+    if (event.key === 'Enter') this.handleSearch();
+  }
+
   // REQUISIÇÃO PRA API - BUSCA
   async getSearchApi(categoryId, query) {
     const searchResult = await api.getProductsFromCategoryAndQuery(categoryId, query);
@@ -61,8 +74,7 @@ class ProductList extends React.Component {
   }
 
   render() {
-    const { categoryState, productResults } = this.state;
-    const { onClick } = this.props;
+    const { categoryState, productResults, productQuantity } = this.state;
 
     return (
       <div className="product-list-page">
@@ -72,13 +84,17 @@ class ProductList extends React.Component {
 
         <main className="main-product-list">
           <div className="search-and-cart-div">
-            <Search onChange={ this.handleChange } onClick={ this.handleSearch } />
-
+            <Search
+              onChange={ this.handleChange }
+              onKeyPress={ this.handleKeyPress }
+              onClick={ this.handleSearch }
+            />
             <ShoppingCartButton />
+            <h1 data-testid="shopping-cart-size">{ productQuantity }</h1>
           </div>
 
           <section>
-            <Products list={ productResults } onClick={ onClick } />
+            <Products onClick={ this.handleClick } list={ productResults } />
           </section>
         </main>
 
@@ -88,7 +104,4 @@ class ProductList extends React.Component {
   }
 }
 
-ProductList.propTypes = {
-  onClick: PropTypes.func.isRequired,
-};
-export default ProductList;
+export default HomePage;
