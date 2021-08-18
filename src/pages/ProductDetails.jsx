@@ -4,6 +4,7 @@ import BackButton from '../components/BackButton';
 import DetailsCard from '../components/DetailsCard';
 import ShoppingCartButton from '../components/ShoppingCartButton';
 import EvaluationForms from '../components/EvaluationForms';
+import UserRating from '../components/UserRating';
 
 class ProductDetails extends React.Component {
   constructor(props) {
@@ -13,16 +14,18 @@ class ProductDetails extends React.Component {
     };
   }
 
-  /* componentDidMount() {
+  componentDidMount() {
     this.handleClick();
-  } */
+  }
 
   // MUDA A QUANTIDADE TOTAL DE PRODUTOS
   handleClick = () => {
     const product = JSON.parse(localStorage.getItem('product'));
-    this.setState({
-      productQuantity: product.reduce((acc, curr) => acc + curr.qts, 0),
-    });
+    if (product !== null) {
+      this.setState({
+        productQuantity: product.reduce((acc, curr) => acc + curr.qts, 0),
+      });
+    }
   }
 
   // EXIBE SE O FRETE É GRÁTIS SE DISPONIVEL
@@ -65,7 +68,11 @@ class ProductDetails extends React.Component {
 
             <DetailsCard onClick={ this.handleClick } product={ product } />
           </div>
-          <EvaluationForms title={ product.title } />
+          <div>
+            <h4>Avaliações</h4>
+            <EvaluationForms id={ product.id } />
+            <UserRating id={ product.id } product={ product } />
+          </div>
         </main>
       </div>
     );

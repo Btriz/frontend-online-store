@@ -20,14 +20,17 @@ class HomePage extends React.Component {
   // FAZ A REQUISIÇÃO PRA LISTAR AS CATEGORIAS DISPONÍVEIS AO RENDERIZAR
   componentDidMount() {
     this.getCategoriesApi();
+    this.handleClick();
   }
 
   // MUDA A QUANTIDADE TOTAL DE PRODUTOS
   handleClick = () => {
     const product = JSON.parse(localStorage.getItem('product'));
-    this.setState({
-      productQuantity: product.reduce((acc, curr) => acc + curr.qts, 0),
-    });
+    if (product !== null) {
+      this.setState({
+        productQuantity: product.reduce((acc, curr) => acc + curr.qts, 0),
+      });
+    }
   }
 
   // CAPTURA O VALOR DO INPUT - CATEGORIA OU TERMO - NO ESTADO
@@ -55,6 +58,11 @@ class HomePage extends React.Component {
     });
   }
 
+  // ATIVADA NO ENTER DO BOTÃO DE BUSCA.
+  handleKeyPress = (event) => {
+    if (event.key === 'Enter') this.handleSearch();
+  }
+
   // REQUISIÇÃO PRA API - BUSCA
   async getSearchApi(categoryId, query) {
     const searchResult = await api.getProductsFromCategoryAndQuery(categoryId, query);
@@ -76,8 +84,11 @@ class HomePage extends React.Component {
 
         <main className="main-product-list">
           <div className="search-and-cart-div">
-            <Search onChange={ this.handleChange } onClick={ this.handleSearch } />
-
+            <Search
+              onChange={ this.handleChange }
+              onKeyPress={ this.handleKeyPress }
+              onClick={ this.handleSearch }
+            />
             <ShoppingCartButton />
             <h1 data-testid="shopping-cart-size">{ productQuantity }</h1>
           </div>

@@ -1,5 +1,6 @@
 import React from 'react';
-import statesData from '../statesData';
+import PaymentMethods from '../components/PaymentMethods';
+import CheckoutForms from '../components/CheckoutForms';
 
 class Checkout extends React.Component {
   constructor(props) {
@@ -15,6 +16,7 @@ class Checkout extends React.Component {
       number: '',
       city: '',
       states: '',
+      payment: '',
     };
   }
 
@@ -35,173 +37,19 @@ class Checkout extends React.Component {
 
     registerUser.push(this.state);
     localStorage.setItem('registerUser', JSON.stringify(registerUser));
-  }
-
-  renderFullName = () => {
-    const { name } = this.state;
-    return (
-      <label htmlFor="name">
-        <input
-          required
-          value={ name }
-          placeholder="Nome completo"
-          data-testid="checkout-fullname"
-          id="name"
-          name="name"
-          type="text"
-          onChange={ this.handleChange }
-        />
-      </label>
-    );
-  }
-
-  renderCPF = () => {
-    const { cpf } = this.state;
-    return (
-      <label htmlFor="cpf">
-        <input
-          value={ cpf }
-          maxLength="11"
-          placeholder="CPF"
-          data-testid="checkout-cpf"
-          id="cpf"
-          name="cpf"
-          type="text"
-          onChange={ this.handleChange }
-        />
-      </label>
-    );
-  }
-
-  renderEmail = () => {
-    const { email } = this.state;
-    return (
-      <label htmlFor="email">
-        <input
-          value={ email }
-          placeholder="Email"
-          data-testid="checkout-email"
-          id="email"
-          name="email"
-          type="email"
-          onChange={ this.handleChange }
-        />
-      </label>
-    );
-  }
-
-  renderPhone = () => {
-    const { phone } = this.state;
-    return (
-      <label htmlFor="phone">
-        <input
-          value={ phone }
-          maxLength="12"
-          placeholder="Telefone"
-          data-testid="checkout-phone"
-          id="phone"
-          name="phone"
-          type="text"
-          onChange={ this.handleChange }
-        />
-      </label>
-    );
-  }
-
-  renderCEP = () => {
-    const { cep } = this.state;
-    return (
-      <label htmlFor="cep">
-        <input
-          value={ cep }
-          maxLength="8"
-          placeholder="CEP"
-          data-testid="checkout-cep"
-          id="cep"
-          name="cep"
-          type="text"
-          onChange={ this.handleChange }
-        />
-      </label>
-    );
-  }
-
-  renderAddress = () => {
-    const { address } = this.state;
-    return (
-      <label htmlFor="address">
-        <input
-          value={ address }
-          placeholder="Endereço"
-          data-testid="checkout-address"
-          id="address"
-          name="address"
-          type="text"
-          onChange={ this.handleChange }
-        />
-      </label>
-    );
-  }
-
-  renderComplement = () => {
-    const { complement } = this.state;
-    return (
-      <label htmlFor="complement">
-        <input
-          value={ complement }
-          placeholder="Complemento"
-          id="complement"
-          name="complement"
-          type="text"
-          onChange={ this.handleChange }
-        />
-      </label>
-    );
-  }
-
-  renderNumber = () => {
-    const { number } = this.state;
-    return (
-      <label htmlFor="number">
-        <input
-          value={ number }
-          placeholder="Número"
-          id="number"
-          name="number"
-          type="text"
-          onChange={ this.handleChange }
-        />
-      </label>
-    );
-  }
-
-  renderCity = () => {
-    const { city } = this.state;
-    return (
-      <label htmlFor="city">
-        <input
-          value={ city }
-          placeholder="Cidade"
-          id="city"
-          name="city"
-          type="text"
-          onChange={ this.handleChange }
-        />
-      </label>
-    );
-  }
-
-  renderStates = () => {
-    const states = (
-      <label htmlFor="states">
-        <select id="states" name="states" onChange={ this.handleChange }>
-          {statesData.map((state) => (
-            <option key={ state.value } value={ state.value }>{state.label}</option>
-          ))}
-        </select>
-      </label>
-    );
-    return states;
+    this.setState({
+      name: '',
+      cpf: '',
+      email: '',
+      phone: '',
+      cep: '',
+      address: '',
+      complement: '',
+      number: '',
+      city: '',
+      states: '',
+      payment: '',
+    });
   }
 
   render() {
@@ -225,17 +73,9 @@ class Checkout extends React.Component {
           <fieldset>
             <form onSubmit={ this.handleSubmit }>
               <h3>Informações do comprador</h3>
-              { this.renderFullName() }
-              { this.renderCPF() }
-              { this.renderEmail() }
-              { this.renderPhone() }
-              { this.renderCEP() }
-              { this.renderAddress() }
-              { this.renderComplement() }
-              { this.renderNumber() }
-              { this.renderCity() }
-              { this.renderStates() }
-              <button type="submit">Avaliar</button>
+              <CheckoutForms onChange={ this.handleChange } />
+              <PaymentMethods onChange={ this.handleChange } />
+              <button type="submit">Comprar</button>
             </form>
           </fieldset>
         </div>

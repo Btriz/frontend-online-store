@@ -11,17 +11,18 @@ class ShoppingCart extends React.Component {
     };
   }
 
-  /* componentDidMount() {
+  componentDidMount() {
     this.handleCurrentAmount();
-    this.handleClick();
-  } */
+  }
 
   // MUDA O VALOR TOTAL DE ACORDO COM A QUANTIDADE TOTAL DE PRODUTOS
   handleCurrentAmount = () => {
     const cartProducts = JSON.parse(localStorage.getItem('product'));
-    this.setState({
-      currentAmount: cartProducts.reduce((acc, curr) => acc + curr.amount, 0),
-    });
+    if (cartProducts !== null) {
+      this.setState({
+        currentAmount: cartProducts.reduce((acc, curr) => acc + curr.amount, 0),
+      });
+    }
   }
 
   // DELETA UM ITEM DA LISTA DE ACORDO COM ID DO PARÂMENTRO

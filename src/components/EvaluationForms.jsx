@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import InputRadio from './InputRadio';
 
 class EvaluationForms extends React.Component {
   constructor(props) {
@@ -7,8 +8,8 @@ class EvaluationForms extends React.Component {
     this.state = {
       email: '',
       message: '',
-      assessment: 0,
-      title: props.title,
+      rating: '',
+      id: props.id,
     };
   }
 
@@ -29,6 +30,40 @@ class EvaluationForms extends React.Component {
 
     evaluation.push(this.state);
     localStorage.setItem('evaluation', JSON.stringify(evaluation));
+    this.setState({ email: '', message: '', rating: 0 });
+  }
+
+  renderEmail = () => {
+    const { email } = this.state;
+    return (
+      <label htmlFor="email">
+        <input
+          value={ email }
+          required
+          placeholder="Email"
+          id="email"
+          onChange={ this.handleChange }
+          name="email"
+          type="email"
+        />
+      </label>
+    );
+  }
+
+  renderTextarea = () => {
+    const { message } = this.state;
+    return (
+      <label htmlFor="message">
+        <textarea
+          value={ message }
+          placeholder="Mensagem (opcional)"
+          data-testid="product-detail-evaluation"
+          id="message"
+          name="message"
+          onChange={ this.handleChange }
+        />
+      </label>
+    );
   }
 
   render() {
@@ -36,85 +71,18 @@ class EvaluationForms extends React.Component {
       <fieldset>
 
         <form onSubmit={ this.handleSubmit }>
-
-          <label htmlFor="email">
-            <input
-              required
-              placeholder="Email"
-              id="email"
-              onChange={ this.handleChange }
-              name="email"
-              type="email"
-            />
-          </label>
-
-          <label htmlFor="message">
-            <textarea
-              placeholder="Mensagem (opcional)"
-              data-testid="product-detail-evaluation"
-              id="message"
-              name="message"
-              onChange={ this.handleChange }
-            />
-          </label>
-          1
-          <label htmlFor="assessment_1">
-            <input
-              type="radio"
-              id="assessment_1"
-              value={ 1 }
-              name="assessment"
-              onChange={ this.handleChange }
-            />
-          </label>
-          <label htmlFor="assessment_2">
-            2
-            <input
-              type="radio"
-              id="assessment_2"
-              value={ 2 }
-              name="assessment"
-              onChange={ this.handleChange }
-            />
-          </label>
-          <label htmlFor="assessment_3">
-            3
-            <input
-              type="radio"
-              id="assessment_3"
-              value={ 3 }
-              name="assessment"
-              onChange={ this.handleChange }
-            />
-          </label>
-          <label htmlFor="assessment_4">
-            4
-            <input
-              type="radio"
-              id="assessment_4"
-              value={ 4 }
-              name="assessment"
-              onChange={ this.handleChange }
-            />
-          </label>
-          <label htmlFor="assessment_5">
-            5
-            <input
-              type="radio"
-              id="assessment_5"
-              value={ 5 }
-              name="assessment"
-              onChange={ this.handleChange }
-            />
-          </label>
+          { this.renderEmail() }
+          { this.renderTextarea() }
+          <InputRadio handleChange={ this.handleChange } />
           <button type="submit">Avaliar</button>
         </form>
+
       </fieldset>
     );
   }
 }
 
 EvaluationForms.propTypes = {
-  title: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
 };
 export default EvaluationForms;
