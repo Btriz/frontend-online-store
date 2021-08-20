@@ -7,7 +7,7 @@ class Products extends React.Component {
     const { list, onClick } = this.props;
 
     return (
-      <div className="products">
+      <section className="products">
         { list.map((element) => (
           <ProductCard
             key={ element.id }
@@ -15,7 +15,7 @@ class Products extends React.Component {
             onClick={ onClick }
           />
         ))}
-      </div>
+      </section>
     );
   }
 }

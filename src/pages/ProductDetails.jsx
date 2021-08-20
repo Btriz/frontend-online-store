@@ -49,8 +49,7 @@ class ProductDetails extends React.Component {
       <div className="detail-page">
         <nav className="detail-nav">
           <BackButton history={ history } />
-          <ShoppingCartButton />
-          <h1 data-testid="shopping-cart-size">{ productQuantity }</h1>
+          <ShoppingCartButton productQuantity={ productQuantity } />
         </nav>
 
         <main className="detail-main">

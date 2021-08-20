@@ -78,25 +78,32 @@ class HomePage extends React.Component {
 
     return (
       <div className="product-list-page">
-        <aside className="category-list">
-          <CategoryList list={ categoryState } onChange={ this.handleChange } />
-        </aside>
+        <nav className="back-and-cart-nav">
+          <div className="home-nav-items">
+            <h4>HOME</h4>
+            <h4>PROMOÇÕES</h4>
+            <h4>BAIXE O APP</h4>
+            <h4>FALE CONOSCO</h4>
+          </div>
+          <ShoppingCartButton productQuantity={ productQuantity } />
+        </nav>
 
-        <main className="main-product-list">
-          <div className="search-and-cart-div">
+        <div className="product-list-page-1">
+          <aside className="category-list">
+            <h4>CATEGORIAS</h4>
+            <CategoryList list={ categoryState } onChange={ this.handleChange } />
+          </aside>
+
+          <main className="main-product-list">
             <Search
               onChange={ this.handleChange }
               onKeyPress={ this.handleKeyPress }
               onClick={ this.handleSearch }
             />
-            <ShoppingCartButton />
-            <h1 data-testid="shopping-cart-size">{ productQuantity }</h1>
-          </div>
 
-          <section>
             <Products onClick={ this.handleClick } list={ productResults } />
-          </section>
-        </main>
+          </main>
+        </div>
 
       </div>
 
