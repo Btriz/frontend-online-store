@@ -3,7 +3,7 @@ import * as api from '../services/api';
 import CategoryList from '../components/CategoryList';
 import Products from '../components/Products';
 import Search from '../components/Search';
-import ShoppingCartButton from '../components/ShoppingCartButton';
+import Nav from '../components/Nav';
 
 class HomePage extends React.Component {
   constructor(props) {
@@ -78,19 +78,16 @@ class HomePage extends React.Component {
 
     return (
       <div className="product-list-page">
-        <nav className="back-and-cart-nav">
-          <div className="home-nav-items">
-            <h4>HOME</h4>
-            <h4>PROMOÇÕES</h4>
-            <h4>BAIXE O APP</h4>
-            <h4>FALE CONOSCO</h4>
-          </div>
-          <ShoppingCartButton productQuantity={ productQuantity } />
-        </nav>
+        <Nav
+          needCart
+          productQuantity={ productQuantity }
+        />
 
-        <div className="product-list-page-1">
+        <div
+          className="product-list-page-1 main"
+        >
           <aside className="category-list">
-            <h4>CATEGORIAS</h4>
+            <h3>CATEGORIAS</h3>
             <CategoryList list={ categoryState } onChange={ this.handleChange } />
           </aside>
 

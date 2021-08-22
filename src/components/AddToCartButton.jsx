@@ -48,6 +48,7 @@ class AddToCartButton extends React.Component {
           data-testid={ testid }
           onClick={ this.handleClick }
           type="button"
+          className="green-button"
         >
           Adicionar ao carrinho
         </button>

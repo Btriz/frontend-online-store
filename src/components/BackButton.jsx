@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import back from '../img/back.png';
 
 class BackButton extends React.Component {
   constructor(props) {
@@ -19,7 +20,7 @@ class BackButton extends React.Component {
         className="back-button"
         onClick={ this.goBack }
       >
-        Voltar
+        <img src={ back } alt="back" />
       </button>
     );
   }

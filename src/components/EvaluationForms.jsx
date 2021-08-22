@@ -36,7 +36,7 @@ class EvaluationForms extends React.Component {
   renderEmail = () => {
     const { email } = this.state;
     return (
-      <label htmlFor="email">
+      <label className="evaluation-email" htmlFor="email">
         <input
           value={ email }
           required
@@ -53,7 +53,7 @@ class EvaluationForms extends React.Component {
   renderTextarea = () => {
     const { message } = this.state;
     return (
-      <label htmlFor="message">
+      <label className="evaluation-message" htmlFor="message">
         <textarea
           value={ message }
           placeholder="Mensagem (opcional)"
@@ -68,16 +68,21 @@ class EvaluationForms extends React.Component {
 
   render() {
     return (
-      <fieldset>
+      <form
+        onSubmit={ this.handleSubmit }
+        className="evaluation-form"
+      >
+        <div className="evaluation-form-div">
+          <div className="">
+            { this.renderEmail() }
+            { this.renderTextarea() }
+          </div>
 
-        <form onSubmit={ this.handleSubmit }>
-          { this.renderEmail() }
-          { this.renderTextarea() }
           <InputRadio handleChange={ this.handleChange } />
-          <button type="submit">Avaliar</button>
-        </form>
+        </div>
 
-      </fieldset>
+        <button type="submit" className="blue-button">Avaliar</button>
+      </form>
     );
   }
 }

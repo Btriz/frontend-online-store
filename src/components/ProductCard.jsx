@@ -19,7 +19,7 @@ class ProductCard extends React.Component {
     return (
       <div
         data-testid="product"
-        className="card"
+        className="card product-card"
       >
         <Link
           // SALVAR O OBJETO EM LOCATION - REFERÊNCIA: https://abre.ai/c84N
