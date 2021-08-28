@@ -1,29 +1,29 @@
 {
   "files": {
-    "main.css": "/Btriz.github.io/frontend-online-store/static/css/main.e603e046.chunk.css",
-    "main.js": "/Btriz.github.io/frontend-online-store/static/js/main.5efcd73e.chunk.js",
-    "main.js.map": "/Btriz.github.io/frontend-online-store/static/js/main.5efcd73e.chunk.js.map",
-    "runtime-main.js": "/Btriz.github.io/frontend-online-store/static/js/runtime-main.45e8c13f.js",
-    "runtime-main.js.map": "/Btriz.github.io/frontend-online-store/static/js/runtime-main.45e8c13f.js.map",
-    "static/js/2.8573a162.chunk.js": "/Btriz.github.io/frontend-online-store/static/js/2.8573a162.chunk.js",
-    "static/js/2.8573a162.chunk.js.map": "/Btriz.github.io/frontend-online-store/static/js/2.8573a162.chunk.js.map",
-    "index.html": "/Btriz.github.io/frontend-online-store/index.html",
-    "precache-manifest.ee6a0bc217730cef815d45139013f55f.js": "/Btriz.github.io/frontend-online-store/precache-manifest.ee6a0bc217730cef815d45139013f55f.js",
-    "service-worker.js": "/Btriz.github.io/frontend-online-store/service-worker.js",
-    "static/css/main.e603e046.chunk.css.map": "/Btriz.github.io/frontend-online-store/static/css/main.e603e046.chunk.css.map",
-    "static/js/2.8573a162.chunk.js.LICENSE.txt": "/Btriz.github.io/frontend-online-store/static/js/2.8573a162.chunk.js.LICENSE.txt",
-    "static/media/clip-1082.png": "/Btriz.github.io/frontend-online-store/static/media/clip-1082.76022c59.png",
-    "static/media/clip-1670.png": "/Btriz.github.io/frontend-online-store/static/media/clip-1670.590851db.png",
-    "static/media/logo.png": "/Btriz.github.io/frontend-online-store/static/media/logo.29ad7855.png",
-    "static/media/urban-681.png": "/Btriz.github.io/frontend-online-store/static/media/urban-681.59f1c25b.png",
-    "static/media/urban-867.png": "/Btriz.github.io/frontend-online-store/static/media/urban-867.4b976e2b.png",
-    "static/media/urban-890.png": "/Btriz.github.io/frontend-online-store/static/media/urban-890.1d3bb188.png",
-    "static/media/urban-912.png": "/Btriz.github.io/frontend-online-store/static/media/urban-912.fb6cc409.png"
+    "main.css": "/frontend-online-store/static/css/main.e603e046.chunk.css",
+    "main.js": "/frontend-online-store/static/js/main.4eb460a5.chunk.js",
+    "main.js.map": "/frontend-online-store/static/js/main.4eb460a5.chunk.js.map",
+    "runtime-main.js": "/frontend-online-store/static/js/runtime-main.720530ed.js",
+    "runtime-main.js.map": "/frontend-online-store/static/js/runtime-main.720530ed.js.map",
+    "static/js/2.8573a162.chunk.js": "/frontend-online-store/static/js/2.8573a162.chunk.js",
+    "static/js/2.8573a162.chunk.js.map": "/frontend-online-store/static/js/2.8573a162.chunk.js.map",
+    "index.html": "/frontend-online-store/index.html",
+    "precache-manifest.7a23f819f2cd842ab676a71db84b38cd.js": "/frontend-online-store/precache-manifest.7a23f819f2cd842ab676a71db84b38cd.js",
+    "service-worker.js": "/frontend-online-store/service-worker.js",
+    "static/css/main.e603e046.chunk.css.map": "/frontend-online-store/static/css/main.e603e046.chunk.css.map",
+    "static/js/2.8573a162.chunk.js.LICENSE.txt": "/frontend-online-store/static/js/2.8573a162.chunk.js.LICENSE.txt",
+    "static/media/clip-1082.png": "/frontend-online-store/static/media/clip-1082.76022c59.png",
+    "static/media/clip-1670.png": "/frontend-online-store/static/media/clip-1670.590851db.png",
+    "static/media/logo.png": "/frontend-online-store/static/media/logo.29ad7855.png",
+    "static/media/urban-681.png": "/frontend-online-store/static/media/urban-681.59f1c25b.png",
+    "static/media/urban-867.png": "/frontend-online-store/static/media/urban-867.4b976e2b.png",
+    "static/media/urban-890.png": "/frontend-online-store/static/media/urban-890.1d3bb188.png",
+    "static/media/urban-912.png": "/frontend-online-store/static/media/urban-912.fb6cc409.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.45e8c13f.js",
+    "static/js/runtime-main.720530ed.js",
     "static/js/2.8573a162.chunk.js",
     "static/css/main.e603e046.chunk.css",
-    "static/js/main.5efcd73e.chunk.js"
+    "static/js/main.4eb460a5.chunk.js"
   ]
 }
