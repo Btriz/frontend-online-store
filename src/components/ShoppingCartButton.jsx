@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import cart from '../img/cart2.png';
@@ -21,5 +22,9 @@ class ShoppingCartButton extends React.Component {
     );
   }
 }
+
+ShoppingCartButton.propTypes = {
+  productQuantity: PropTypes.number.isRequired,
+};
 
 export default ShoppingCartButton;

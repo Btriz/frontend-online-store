@@ -40,7 +40,9 @@ class ProductCard extends React.Component {
             </div>
 
             <div className="price-shipping">
-              <span className="card-price">{ `R$ ${Math.round(price * 100) / 100}` }</span>
+              <span className="card-price">
+                { `R$ ${Math.round(price * 100) / 100}` }
+              </span>
 
               <div className="free-shipping">
                 { this.availableQuantity() }

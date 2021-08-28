@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import List from '../components/List';
@@ -119,5 +120,9 @@ class ShoppingCart extends React.Component {
     );
   }
 }
+
+ShoppingCart.propTypes = {
+  history: PropTypes.objectOf(PropTypes.any).isRequired,
+};
 
 export default ShoppingCart;

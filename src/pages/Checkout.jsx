@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import PaymentMethods from '../components/PaymentMethods';
 import CheckoutForms from '../components/CheckoutForms';
@@ -97,5 +98,9 @@ class Checkout extends React.Component {
     );
   }
 }
+
+Checkout.propTypes = {
+  history: PropTypes.objectOf(PropTypes.any).isRequired,
+};
 
 export default Checkout;
