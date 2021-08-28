@@ -18,6 +18,7 @@
     "eject": "react-scripts eject",
     "lint": "eslint --no-inline-config --no-error-on-unmatched-pattern -c .eslintrc.json . --ext .js,.jsx",
     "lint:styles": "npx stylelint '**/*.css'",
+    "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
   "browserslist": {
@@ -42,5 +43,5 @@
     "stylelint-config-standard": "^20.0.0",
     "stylelint-order": "^4.1.0"
   },
-  "homepage": "https://github.com/Btriz.github.io/frontend-online-store"
+  "homepage": "https://btriz.github.io/frontend-online-store"
 }
