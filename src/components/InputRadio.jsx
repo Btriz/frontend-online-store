@@ -5,9 +5,8 @@ class InputRadio extends React.Component {
   render() {
     const { handleChange } = this.props;
     return (
-      <>
+      <div className="evaluation-ratios">
         <label htmlFor="rating_1">
-          1
           <input
             type="radio"
             id="rating_1"
@@ -15,9 +14,10 @@ class InputRadio extends React.Component {
             name="rating"
             onChange={ handleChange }
           />
+          ⭐
         </label>
+
         <label htmlFor="rating_2">
-          2
           <input
             type="radio"
             id="rating_2"
@@ -25,9 +25,10 @@ class InputRadio extends React.Component {
             name="rating"
             onChange={ handleChange }
           />
+          ⭐⭐
         </label>
+
         <label htmlFor="rating_3">
-          3
           <input
             type="radio"
             id="rating_3"
@@ -35,9 +36,10 @@ class InputRadio extends React.Component {
             name="rating"
             onChange={ handleChange }
           />
+          ⭐⭐⭐
         </label>
+
         <label htmlFor="rating_4">
-          4
           <input
             type="radio"
             id="rating_4"
@@ -45,9 +47,10 @@ class InputRadio extends React.Component {
             name="rating"
             onChange={ handleChange }
           />
+          ⭐⭐⭐⭐
         </label>
+
         <label htmlFor="rating_5">
-          5
           <input
             type="radio"
             id="rating_5"
@@ -55,8 +58,9 @@ class InputRadio extends React.Component {
             name="rating"
             onChange={ handleChange }
           />
+          ⭐⭐⭐⭐⭐
         </label>
-      </>
+      </div>
     );
   }
 }

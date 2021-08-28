@@ -3,7 +3,7 @@ import * as api from '../services/api';
 import CategoryList from '../components/CategoryList';
 import Products from '../components/Products';
 import Search from '../components/Search';
-import ShoppingCartButton from '../components/ShoppingCartButton';
+import Nav from '../components/Nav';
 
 class HomePage extends React.Component {
   constructor(props) {
@@ -78,25 +78,29 @@ class HomePage extends React.Component {
 
     return (
       <div className="product-list-page">
-        <aside className="category-list">
-          <CategoryList list={ categoryState } onChange={ this.handleChange } />
-        </aside>
+        <Nav
+          needCart
+          productQuantity={ productQuantity }
+        />
 
-        <main className="main-product-list">
-          <div className="search-and-cart-div">
+        <div
+          className="product-list-page-1 main"
+        >
+          <aside className="category-list">
+            <h3>CATEGORIAS</h3>
+            <CategoryList list={ categoryState } onChange={ this.handleChange } />
+          </aside>
+
+          <main className="main-product-list">
             <Search
               onChange={ this.handleChange }
               onKeyPress={ this.handleKeyPress }
               onClick={ this.handleSearch }
             />
-            <ShoppingCartButton />
-            <h1 data-testid="shopping-cart-size">{ productQuantity }</h1>
-          </div>
 
-          <section>
             <Products onClick={ this.handleClick } list={ productResults } />
-          </section>
-        </main>
+          </main>
+        </div>
 
       </div>
 

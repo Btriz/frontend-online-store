@@ -164,7 +164,7 @@ class CheckoutForms extends React.Component {
 
   render() {
     return (
-      <>
+      <div className="form1">
         { this.renderFullName() }
         { this.renderCPF() }
         { this.renderEmail() }
@@ -175,7 +175,7 @@ class CheckoutForms extends React.Component {
         { this.renderNumber() }
         { this.renderCity() }
         { this.renderStates() }
-      </>
+      </div>
     );
   }
 }

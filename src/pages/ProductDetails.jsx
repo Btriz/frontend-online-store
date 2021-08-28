@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import BackButton from '../components/BackButton';
 import DetailsCard from '../components/DetailsCard';
-import ShoppingCartButton from '../components/ShoppingCartButton';
 import EvaluationForms from '../components/EvaluationForms';
 import UserRating from '../components/UserRating';
+import Nav from '../components/Nav';
+import free from '../img/free.png';
+import background from '../img/background/clip-1670.png';
 
 class ProductDetails extends React.Component {
   constructor(props) {
@@ -32,7 +33,14 @@ class ProductDetails extends React.Component {
   availableQuantity = () => {
     const { location: { state: { shipping } } } = this.props;
     if (shipping.free_shipping) {
-      return <span data-testid="free-shipping">Frete Grátis</span>;
+      return (
+        <div className="details-free-shipping">
+          <img src={ free } alt="free shipping" />
+          <div data-testid="free-shipping">
+            Frete Grátis
+          </div>
+        </div>
+      );
     }
   }
 
@@ -47,16 +55,17 @@ class ProductDetails extends React.Component {
 
     return (
       <div className="detail-page">
-        <nav className="detail-nav">
-          <BackButton history={ history } />
-          <ShoppingCartButton />
-          <h1 data-testid="shopping-cart-size">{ productQuantity }</h1>
-        </nav>
+        <Nav
+          needBack
+          needCart
+          productQuantity={ productQuantity }
+          history={ history }
+        />
 
-        <main className="detail-main">
+        <main className="detail-main main">
           <div className="detail-title-div">
-            <h1 data-testid="product-detail-name">{ name }</h1>
             { this.availableQuantity() }
+            <h1 data-testid="product-detail-name">{ name }</h1>
           </div>
 
           <div className="details">
@@ -68,12 +77,15 @@ class ProductDetails extends React.Component {
 
             <DetailsCard onClick={ this.handleClick } product={ product } />
           </div>
-          <div>
-            <h4>Avaliações</h4>
-            <EvaluationForms id={ product.id } />
-            <UserRating id={ product.id } product={ product } />
-          </div>
         </main>
+        <section
+          className="evaluation-section"
+          style={ { backgroundImage: `url(${background})` } }
+        >
+          <h2>Avaliações</h2>
+          <EvaluationForms id={ product.id } />
+          <UserRating id={ product.id } product={ product } />
+        </section>
       </div>
     );
   }

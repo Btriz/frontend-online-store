@@ -1,6 +1,9 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import PaymentMethods from '../components/PaymentMethods';
 import CheckoutForms from '../components/CheckoutForms';
+import Nav from '../components/Nav';
+import back from '../img/background/urban-890.png';
 
 class Checkout extends React.Component {
   constructor(props) {
@@ -54,36 +57,50 @@ class Checkout extends React.Component {
 
   render() {
     const products = JSON.parse(localStorage.getItem('product'));
-    if (products !== null) {
-      return (
-        <div>
-          <fieldset>
-            <h3>Revise seus Produto</h3>
+    const { history } = this.props;
+
+    return (
+      <div>
+        <Nav needBack needCart history={ history } />
+        <main
+          className="main checkout-main"
+          style={ { backgroundImage: `url(${back})` } }
+        >
+          <div className="order-details">
+            <h3>Revise seu pedido</h3>
             <ul>
               {products.map((product) => (
                 <li key={ product.itemId }>
-                  <span>{product.qts}</span>
-                  <span>{product.title}</span>
-                  <span>{product.amount}</span>
+                  <span>{ `${product.qts}x` }</span>
+                  <span className="li-ellipsis">{product.title}</span>
+                  <strong>{ `${Math.round(product.amount * 100) / 100}`}</strong>
                 </li>
               ))}
             </ul>
-            <span>{`Total ${products.reduce((acc, curr) => acc + curr.amount, 0)}`}</span>
-          </fieldset>
-          <fieldset>
+
+            <h2>
+              {` Total: R$ ${Math.round((
+                products.reduce((acc, curr) => acc + curr.amount, 0)
+              ) * 100) / 100}` }
+            </h2>
+          </div>
+
+          <fieldset className="checkout-fieldset card">
             <form onSubmit={ this.handleSubmit }>
               <h3>Informações do comprador</h3>
               <CheckoutForms onChange={ this.handleChange } />
               <PaymentMethods onChange={ this.handleChange } />
-              <button type="submit">Comprar</button>
+              <button type="submit" className="green-button">Finalizar pedido</button>
             </form>
           </fieldset>
-        </div>
-      );
-    } return (
-      <h1>Seu carrinho está vazio</h1>
+        </main>
+      </div>
     );
   }
 }
+
+Checkout.propTypes = {
+  history: PropTypes.objectOf(PropTypes.any).isRequired,
+};
 
 export default Checkout;

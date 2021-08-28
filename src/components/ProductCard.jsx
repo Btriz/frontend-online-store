@@ -19,7 +19,7 @@ class ProductCard extends React.Component {
     return (
       <div
         data-testid="product"
-        className="card"
+        className="card product-card"
       >
         <Link
           // SALVAR O OBJETO EM LOCATION - REFERÊNCIA: https://abre.ai/c84N
@@ -38,13 +38,18 @@ class ProductCard extends React.Component {
             <div className="card-image-div">
               <img src={ thumbnail } alt={ title } />
             </div>
-            <span>{ price }</span>
-          </div>
 
+            <div className="price-shipping">
+              <span className="card-price">
+                { `R$ ${Math.round(price * 100) / 100}` }
+              </span>
+
+              <div className="free-shipping">
+                { this.availableQuantity() }
+              </div>
+            </div>
+          </div>
         </Link>
-        <div>
-          { this.availableQuantity() }
-        </div>
         <AddToCartButton
           onClick={ onClick }
           product={ product }

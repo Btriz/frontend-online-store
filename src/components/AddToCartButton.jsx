@@ -43,11 +43,12 @@ class AddToCartButton extends React.Component {
     const { testid } = this.props;
 
     return (
-      <div>
+      <div className="add-to-cart">
         <button
           data-testid={ testid }
           onClick={ this.handleClick }
           type="button"
+          className="green-button"
         >
           Adicionar ao carrinho
         </button>

@@ -15,8 +15,10 @@ class List extends React.Component {
   handleDecrease = (id) => {
     const { handleCurrentAmount } = this.props;
     const cartProducts = JSON.parse(localStorage.getItem('product'));
+
     cartProducts.forEach((product, index) => {
       const { price } = cartProducts[index];
+
       if (product.itemId === id && cartProducts[index].qts > 1) {
         cartProducts[index].qts -= 1;
         cartProducts[index].amount = price * cartProducts[index].qts;
@@ -24,6 +26,7 @@ class List extends React.Component {
           productQuantity: cartProducts[index].qts,
         });
       }
+
       localStorage.setItem('product', JSON.stringify(cartProducts));
       handleCurrentAmount();
     });
@@ -33,16 +36,20 @@ class List extends React.Component {
   handleIncrease = (id) => {
     const { handleCurrentAmount } = this.props;
     const cartProducts = JSON.parse(localStorage.getItem('product'));
+
     cartProducts.forEach((product, index) => {
       const { price, availableQuantity } = cartProducts[index];
+
       if (product.itemId === id && cartProducts[index].qts < availableQuantity) {
         cartProducts[index].qts += 1;
         cartProducts[index].amount = price * cartProducts[index].qts;
         this.setState({
           productQuantity: cartProducts[index].qts,
         });
+
         localStorage.setItem('product', JSON.stringify(cartProducts));
       }
+
       handleCurrentAmount();
     });
   }
@@ -50,6 +57,7 @@ class List extends React.Component {
   // PASSA UM ID DE UM PRODUTO PARA SER DELETADO
   handleClick = () => {
     const { onClick, product } = this.props;
+
     onClick(product.itemId);
   }
 
@@ -57,29 +65,39 @@ class List extends React.Component {
     const { productQuantity, product } = this.state;
 
     return (
-      <li>
-        <QuantityControlButton
-          onClick={ this.handleDecrease }
-          id={ product.itemId }
-          testid="product-decrease-quantity"
-          symbol="-"
-        />
-        <span data-testid="shopping-cart-product-quantity">
-          {` ${productQuantity} `}
-        </span>
-        <QuantityControlButton
-          onClick={ this.handleIncrease }
-          id={ product.itemId }
-          testid="product-increase-quantity"
-          symbol="+"
-        />
-
-        <span data-testid="shopping-cart-product-name">
+      <li className="cart-item li-ellipsis">
+        <img src={ product.image } alt="thumbnail" />
+        <span
+          className="cart-title"
+          data-testid="shopping-cart-product-name"
+        >
           { `  ${product.title}` }
         </span>
+
+        <div className="cart-quantity">
+          <QuantityControlButton
+            onClick={ this.handleDecrease }
+            id={ product.itemId }
+            testid="product-decrease-quantity"
+            symbol="-"
+          />
+
+          <span data-testid="shopping-cart-product-quantity">
+            {` ${productQuantity} `}
+          </span>
+
+          <QuantityControlButton
+            onClick={ this.handleIncrease }
+            id={ product.itemId }
+            testid="product-increase-quantity"
+            symbol="+"
+          />
+        </div>
+
         <span>
-          { ` ----- Preço:  ${product.price * productQuantity}` }
+          { `${Math.round((product.price * productQuantity) * 100) / 100}` }
         </span>
+
         <button type="button" onClick={ this.handleClick }>X</button>
       </li>
     );
